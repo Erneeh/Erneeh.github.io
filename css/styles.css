@@ -3,19 +3,36 @@ body {
   background-color: crimson;
   color: white;
 }
-.one {
-  font-size: 22px;
-  font-family: Ubuntu;
-}
-.two {
+.paragraph {
   font-size: 22px;
   font-family: Ubuntu;
 }
 
+.list {
+  font-size:22px;
+  font-family: Ubuntu;
+  padding-left: 50px;
+}
+
+
 .logo {
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   object-fit: cover;
   float: left;
   padding: 50px;
+}
+
+.link {
+  font-size: 20px;
+  padding-right: 10px;
+}
+
+
+.header {
+  font-size: 60px;
+}
+
+.jump {
+  font-size: 60px;
 }
