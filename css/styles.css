@@ -1,38 +1,92 @@
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap");
+
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Ubuntu;
+    scroll-behavior: smooth;
+}
+
 body {
-  background-color: crimson;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: linear-gradient(90deg, rgba(137, 255, 196, 0.945), rgba(93, 209, 245, 0.979));
+  background-size: 400% 400%;
+  animation: anim 10s infinite ease-in-out;
+}
+
+
+header{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10000;
+}
+header .name {
   color: white;
-}
-.paragraph {
-  font-size: 22px;
-  font-family: Ubuntu;
-}
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 4em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 
-.list {
-  font-size:22px;
-  font-family: Ubuntu;
-  padding-left: 50px;
 }
-
-
-.logo {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  float: left;
-  padding: 50px;
+header .span-name {
+  color:rgb(58, 58, 58);
 }
 
-.link {
-  font-size: 20px;
-  padding-right: 10px;
+@keyframes anim {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
 }
 
-
-.header {
-  font-size: 60px;
+ul{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
 }
+ul li{
+  position: relative;
+  list-style: none;
+}
+ul li a{
+  position: relative;
+  padding: 6px 15px;
+  font-size: 1.75em;
+  text-decoration: none;
+  line-height: 1em;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 
-.jump {
-  font-size: 60px;
+  border-radius: 25px;
+  color: rgb(0, 0, 0);
+  -webkit-text-stroke: 1px rgba(255,255,255,0.5);
+}
+ul li a::before{
+  content: attr(data-text);
+  position: absolute;
+  color: var(--clr);
+  width: 0;
+  overflow: hidden;
+  transition: 0.5s;
+
+}
+ul li a:hover::before{
+  width: 100%;
+  filter: drop-shadow(0 0 25px var(--clr));
 }
