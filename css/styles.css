@@ -128,28 +128,63 @@ color: rgb(180, 6, 41);
   -webkit-text-stroke: 2px black; 
 }
 .contact-button{
+  padding: 15px 40px;
+  border: none;
+  outline: none;
+  color: rgb(180, 6, 41);
+  cursor: pointer;
   position: relative;
-  padding: 6px 15px;
-  font-size: 1.75em;
+  z-index: 0;
+  border-radius: 20px;
   text-decoration: none;
-  line-height: 1em;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  border-radius: 25px;
-  color: rgb(255, 255, 255);
-  -webkit-text-stroke: 2px rgba(0, 0, 0, 0.5);
+  font-size: 4em;
+  background: white;
+  margin-left: 10px;
+}
+.contact-button::after {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #333;
+  left: 0;
+  top: 0;
+  border-radius: 20px;
 }
 .contact-button::before {
-  content: attr(data-text);
+  content: "";
+  background: linear-gradient(
+    75deg,
+    #9e0c0c, #570303, #962e2e, #ee0202
+  );
   position: absolute;
-  color: var(--clr);
-  width: 0;
-  overflow: hidden;
-  transition: 0.2s;
+  top: -2px;
+  left: -2px;
+  background-size: 600%;
+  z-index: -1;
+  width: calc(100% + 4px);
+  height:  calc(100% + 4px);
+  filter:blur(25px);
+  animation: glowing 10s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+  opacity: 0;
 }
 .contact-button:hover::before {
-  width: 100%;
-  filter: drop-shadow(0 0 25px var(--clr));
+  opacity: 1;
+}
+@keyframes glowing {
+  0% {background-position: 0 0;}
+  50% {background-position: 400% 0;}
+  100% {background-position: 0 0;}
+}
+.contact-button:active:after {
+  background: transparent;
+}
+.contact-button:active {
+  color: rgb(180, 6, 41);
+  font-weight: bold;
 }
 #link, #link:hover {
   text-decoration: none;
@@ -173,7 +208,7 @@ color: rgb(180, 6, 41);
   margin-left: -3px;
 }
 
-/* Container around content */
+/* Deze*/
 .container {
   padding: 10px 40px;
   position: relative;
@@ -181,7 +216,7 @@ color: rgb(180, 6, 41);
   width: 50%;
 }
 
-/* The circles on the timeline */
+/* Apskritimai  */
 .container::after {
   content: '';
   position: absolute;
@@ -195,17 +230,17 @@ color: rgb(180, 6, 41);
   z-index: 1;
 }
 
-/* Place the container to the left */
+/* dezes is kaires */
 .left {
   left: 0;
 }
 
-/* Place the container to the right */
+/* dezes is desines */
 .right {
   left: 50%;
 }
 
-/* Add arrows to the left container (pointing right) */
+/* prideti rodykle is kaires */
 .left::before {
   content: " ";
   height: 0;
@@ -219,7 +254,7 @@ color: rgb(180, 6, 41);
   border-color: transparent transparent transparent white;
 }
 
-/* Add arrows to the right container (pointing left) */
+/*prideti rodykle is desines */
 .right::before {
   content: " ";
   height: 0;
@@ -233,12 +268,12 @@ color: rgb(180, 6, 41);
   border-color: transparent white transparent transparent;
 }
 
-/* Fix the circle for containers on the right side */
+/* sutvarko apskritimus dezems is desines */
 .right::after {
   left: -16px;
 }
 
-/* The actual content */
+/* kontentas */
 .content {
   padding: 20px 30px;
   background-color: white;
@@ -246,21 +281,21 @@ color: rgb(180, 6, 41);
   border-radius: 6px;
 }
 
-/* Media queries - Responsive timeline on screens less than 600px wide */
+/* responsive ekranas */
 @media screen and (max-width: 600px) {
 /* Place the timelime to the left */
   .timeline::after {
     left: 31px;
   }
 
-/* Full-width containers */
+/* dezes */
   .container {
     width: 100%;
     padding-left: 70px;
     padding-right: 25px;
   }
 
-/* Make sure that all arrows are pointing leftwards */
+/* padaro visas rodykles, kad zetu i kaire puse */
   .container::before {
     left: 60px;
     border: medium solid white;
@@ -268,12 +303,12 @@ color: rgb(180, 6, 41);
     border-color: transparent white transparent transparent;
   }
 
-/* Make sure all circles are at the same spot */
+/* padaro, kad visi apskritimai butu vienoje tieseje */
   .left::after, .right::after {
     left: 15px;
   }
 
-/* Make all right containers behave like the left ones */
+/* padaro desines dezes, kad atrodytu kaip is kaires */
   .right {
     left: 0%;
   }
