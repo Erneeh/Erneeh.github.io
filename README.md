@@ -1,2 +1,2 @@
 # Erneeh.github.io
- my portfoliko
+BUILDing my first portfolio :))
