@@ -75,7 +75,11 @@ function NavigationBar({AppRoutes}) {
           </div>
         </div>
       {/* this is the content prop */}
+<<<<<<< HEAD
       <div className='md:col-span-8 md:row-span-8 row-span-8 col-span-10 justify-center items-center flex overflow-y-scroll no-scrollbar scroll-smooth'>
+=======
+      <div className='md:col-span-8 md:row-span-8 row-span-8 col-span-10 justify-center items-center flex overflow-y-scroll no-scrollbar'>
+>>>>>>> bcddcfb (Initial commit)
         {AppRoutes}
       </div>
       {/* this is the right side of nav */}
