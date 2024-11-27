@@ -54,11 +54,7 @@ function Portfolio()  {
                   <div className='border w-5/6 sm:w-3/4 rounded-xl py-8 flex text-white text-center items-center justify-start border-gray-600'>
                   <div class="min-w-fit w-1/12  ">01</div>
                   <div class="min-w-fit w-1/12 ">01</div>
-<<<<<<< HEAD
-                  <div class="min-w-fit w-1/3  text-start">Social media</div>
-=======
-                  <div class="min-w-fit w-1/3  text-start">socialmeedjhgjia</div>
->>>>>>> bcddcfb (Initial commit)
+                  <div class="min-w-fit w-1/3  text-start">Social Media</div>
               </div>
 
               <div className='border w-5/6 sm:w-3/4 rounded-xl py-8 flex text-white text-center items-center justify-start border-gray-600'>
