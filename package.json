@@ -8,10 +8,6 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
-<<<<<<< HEAD
-    
-=======
->>>>>>> bcddcfb (Initial commit)
   },
   "dependencies": {
     "@emotion/react": "^11.13.5",
