@@ -1,9 +1,10 @@
 import React from 'react'
 
+
 import { Link,useLocation, useNavigate } from 'react-router-dom';
 
 
-function NavigationBar({AppRoutes}) {
+function NavigationBar({AppRoutes, runScroll}) {
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -35,6 +36,11 @@ function NavigationBar({AppRoutes}) {
       navigate(reversePageMapping[newIndex]); // Navigate to the new page
     }
   };
+
+
+
+
+
 
   return (
     <>
@@ -75,7 +81,8 @@ function NavigationBar({AppRoutes}) {
           </div>
         </div>
       {/* this is the content prop */}
-      <div className='md:col-span-8 md:row-span-8 row-span-8 col-span-10 justify-center items-center flex overflow-y-scroll no-scrollbar'>
+      <div className='md:col-span-8 md:row-span-8 row-span-8 col-span-10 justify-center items-center flex overflow-y-scroll no-scrollbar'
+      >
         {AppRoutes}
       </div>
       {/* this is the right side of nav */}
