@@ -36,7 +36,7 @@ import { motion } from "framer-motion";
      variants={container}
      initial="hidden" // Starting state for all items
      animate="show"   // Final state for all items
-    class="h-full w-11/12 max-h-full p-4 items-center justify-center flex">
+    class="h-full w-full px-6 max-h-full p-4 items-center justify-center flex">
       <div class="w-full md:h-1/2 h-full ">
         <motion.div variants={item} class='md:h-1/3 h-1/6 flex items-end text-white'>Introduction</motion.div>
         <motion.div variants={item} class='md:h-1/3 h-1/3 flex items-center text-white text-4xl sm:text-5xl'>QA-trained, Front-End focused, always evolving.</motion.div>

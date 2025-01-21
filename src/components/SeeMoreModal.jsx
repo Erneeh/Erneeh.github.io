@@ -21,7 +21,7 @@ export default function SeeMoreModal({ open, onClose, completedWorks }) {
         <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
           <DialogPanel
             transition
-            className="relative transform overflow-hidden rounded-xl bg-gradient-to-r from-slate-700 to-slate-800 border border-gray-600 text-left shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 md:w-3/4 md:max-w-3xl data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95"
+            className="relative transform overflow-hidden rounded-xl bg-gradient-to-r from-slate-700 to-slate-800 border border-gray-600 text-left shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 sm:w-11/12 sm:max-w-fit md:w-11/12 md:max-w-3xl data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95"
           >
             <div className="px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
               <div className="sm:flex sm:items-start">
@@ -30,15 +30,16 @@ export default function SeeMoreModal({ open, onClose, completedWorks }) {
                   <DialogTitle as="h2" className="text-center font-semibold text-white text-2xl">
                     Projects
                   </DialogTitle>
-                  <div className="mt-2 w-full p-2">
+                  <div className="m-2 min-w-fit  p-2 space-y-4 grid items-center justify-center">
                     {completedWorks.map((works, index) => {
                     return (
-                      <a href={works.url} className={`border my-2 h-fit w-full rounded-xl flex text-white text-center items-center justify-center border-gray-600 hover:border-white duration-500 transition`}>
-                      <div className="w-1/6 h-full  justify-center items-center flex">{index + 1}</div>
-                      <div className="w-1/6 h-full  justify-center items-center flex">{works.description}</div>
-                      <div className="w-1/6 h-full  justify-center items-center flex">{works.website}</div>
+                      <a href={works.url} className={`border rounded-xl text-white flex items-center justify-center  border-gray-600 hover:scale-105 duration-500 hover:border-white max-w-fit `
+                      }>
+                      
+                      <div className="pl-4 justify-center items-center md:flex hidden">{works.description}</div>
+                      <div className="pr-2  justify-center items-center sm:flex sm:pl-2  hidden">{works.website}</div>
                       <iframe
-                      className='h-full  justify-center items-center flex rounded-r-xl w-2/3' 
+                      className='justify-center items-center max-w-full flex sm:rounded-r-xl sm:rounded-l-none rounded-xl' 
                       src={works.url}
                       scrolling="no"
                       >
@@ -50,7 +51,7 @@ export default function SeeMoreModal({ open, onClose, completedWorks }) {
                 </div>
               </div>
             </div>
-            <div className="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 justify-center">
+            <div className="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 justify-center items-center flex">
             
               <button
                 type="button"
@@ -58,7 +59,7 @@ export default function SeeMoreModal({ open, onClose, completedWorks }) {
 
                 //onClick calls the onClose function (to close the SeeMoreModal component)
                 onClick={() => onClose()}
-                className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+                className="mb-2 flex items-center justify-center cursor-pointer border border-gray-400 rounded-full hover:scale-105 duration-500 hover:border-white hover:text-white p-3 text-gray-400"
               >
                 Close
               </button>

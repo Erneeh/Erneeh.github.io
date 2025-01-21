@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
+import { FiInstagram, FiGithub, FiLinkedin } from "react-icons/fi";
 
 import { Link,useLocation, useNavigate } from 'react-router-dom';
 
@@ -13,9 +14,26 @@ function NavigationBar({AppRoutes, runScroll}) {
     '/': 1,
     '/portfolio': 2,
     '/about': 3,
-    '/contact': 4,
+    '/contacts': 4,
   };
 
+
+
+  const footerMediaLinks = [
+    {
+      icon: <FiGithub />,
+      href: "https://github.com/Erneeh",
+    },
+    {
+      icon: <FiInstagram />,
+      href: "https://www.instagram.com/erneeu/",
+    },
+    {
+      icon: <FiLinkedin />,
+      href: "https://www.linkedin.com/in/ernestas-undz%C4%97nas-b8a814213/",
+    },
+
+  ]
   // Get current index based on the current route
   const currentIndex = pageMapping[location.pathname] || 1; // Default to 1 if no match
   const totalPages = Object.keys(pageMapping).length;
@@ -32,13 +50,38 @@ function NavigationBar({AppRoutes, runScroll}) {
     let newIndex = currentIndex + direction;
 
     // Ensure the index stays within bounds
-    if (newIndex >= 0 && newIndex < totalPages) {
+    if (newIndex >= 0 && newIndex <= totalPages) {
       navigate(reversePageMapping[newIndex]); // Navigate to the new page
     }
   };
 
 
 
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const handleNextPageClick = () => {
+    let newIndex = currentIndex + 1;
+    if (newIndex > totalPages) {
+      newIndex = 1; // Loop back to the first page if exceeding
+    }
+    navigate(reversePageMapping[newIndex]); // Navigate to the next page
+  };
 
 
 
@@ -47,14 +90,14 @@ function NavigationBar({AppRoutes, runScroll}) {
     <div 
     className='grid grid-cols-10 grid-rows-10 h-screen w-full shadow-[inset_0_0_50px_rgba(0,0,0,0.5)] bg-gradient-to-r from-slate-900 to-slate-700'  onWheel={handleScroll}>
       {/* this is the top of nav */}
-      <div className='col-span-10 row-span-1 '>
+      <div className={`col-span-10 row-span-1 ${ isScrolled ? "hidden" : ""}`}>
         <div className='h-full grid grid-cols-10 items-center justify-center px-5'>
           {/* name */}
-          <div className='col-span-1 col-end-2 flex items-center justify-center min-w-fit px-5'>
-            <h1 className='text-white font-semibold tracking-widest'>ERNESTAS</h1>
+          <div className='col-span-2 col-start-1 flex items-center justify-center min-w-fit px-5'>
+            <h1 className='text-white font-semibold tracking-widest'><Link to="/">ERNESTAS</Link></h1>
           </div>
           {/* button */}
-          <div className='col-span-1 col-start-10 flex items-center justify-center'>
+          <div className='col-span-2 col-start-9  flex items-center justify-center px-5 min-w-fit'>
             <button className='p-3 bg-gray-400 text-gray-300 rounded-full h-fit w-fit cursor-pointer hover:scale-110 duration-300'>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
             <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -97,24 +140,31 @@ function NavigationBar({AppRoutes, runScroll}) {
       </div>
 
       {/* this is the bottom of nav */}
-      <div className='col-span-10 md:row-span-1 '>
+      <div className='col-span-10 md:row-span-1'>
         <div className='h-full grid grid-cols-10 items-center justify-center px-5'>
-          {/* name */}
-          <div className='md:col-span-2 flex items-center justify-center min-w-fit'>
-            <nav className='w-full'>
-              <ul className='flex gap-2 justify-center items-center w-full text-white'>
-                <li><Link to="/">LinkedIn</Link></li>
-                <li><Link to="/">LinkedIn</Link></li>
-                <li><Link to="/portfolio">LinkedIn</Link></li>
-              </ul>
+          {/* links */}
+          <div className='col-span-2 col-start-1 flex items-center justify-center min-w-fit px-5'>
+            <nav className=''>
+              <ul className='flex gap-6 justify-center items-center  text-white'>
+                {footerMediaLinks.map((links, index) => {
+                  return (
+                    <>
+                    <li 
+                    className='cursor-pointer hover:scale-125 duration-300'>
+                      <a href={links.href} target='_blank'>{links.icon}</a>
+                    </li>
+                    </>
+                  ) 
+                })}
+                </ul>
             </nav>
           </div>
           {/* button */}
-          <div className='col-span-1 col-start-10 flex items-center justify-center'>
+          <div className='col-span-2 col-start-9  flex items-center justify-center px-5 min-w-fit'>
             <button 
-            onClick={() => navigate('/portfolio')}
+            onClick={handleNextPageClick}
             className='p-3 bg-gray-400 text-gray-300 rounded-full h-fit w-fit cursor-pointer hover:scale-110 duration-300'>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
             <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
             </svg>
             </button>
