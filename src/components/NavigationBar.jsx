@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { FiInstagram, FiGithub, FiLinkedin } from "react-icons/fi";
+import { FiInstagram, FiGithub, FiLinkedin, FiArrowUp, FiArrowDown } from "react-icons/fi";
 
 import { Link,useLocation, useNavigate } from 'react-router-dom';
 
@@ -83,6 +83,14 @@ function NavigationBar({AppRoutes, runScroll}) {
     navigate(reversePageMapping[newIndex]); // Navigate to the next page
   };
 
+  const handleNextPageReverseClick = () => {
+    let newIndex = currentIndex - 1;
+    if (newIndex > totalPages) {
+      newIndex = 1;
+    }
+    navigate(reversePageMapping[newIndex]);
+  }
+
 
 
   return (
@@ -98,11 +106,13 @@ function NavigationBar({AppRoutes, runScroll}) {
           </div>
           {/* button */}
           <div className='col-span-2 col-start-9  flex items-center justify-center px-5 min-w-fit'>
-            <button className='p-3 bg-gray-400 text-gray-300 rounded-full h-fit w-fit cursor-pointer hover:scale-110 duration-300'>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-            </svg>
+          {currentIndex !== 1 && (
+            <button 
+            onClick={handleNextPageReverseClick}
+            className='p-3 bg-gray-400 text-gray-300 rounded-full h-fit w-fit cursor-pointer hover:scale-110 duration-300'>
+            <FiArrowUp />
             </button>
+          )}
           </div>
         </div>
       </div>
@@ -161,13 +171,14 @@ function NavigationBar({AppRoutes, runScroll}) {
           </div>
           {/* button */}
           <div className='col-span-2 col-start-9  flex items-center justify-center px-5 min-w-fit'>
-            <button 
-            onClick={handleNextPageClick}
-            className='p-3 bg-gray-400 text-gray-300 rounded-full h-fit w-fit cursor-pointer hover:scale-110 duration-300'>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
-            </svg>
-            </button>
+            {currentIndex !== 4 && (
+              <button 
+              onClick={handleNextPageClick}
+              className='p-3 bg-gray-400 text-gray-300 rounded-full h-fit w-fit cursor-pointer hover:scale-110 duration-300'>
+              <FiArrowDown />
+              </button>
+            )}
+            
           </div>
         </div>
       </div>
