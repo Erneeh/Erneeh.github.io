@@ -76,24 +76,25 @@ function Portfolio()  {
             <div className="items-center justify-center grid gap-2 h-full row-span-2">
                 <motion.div variants={item} className='items-center justify-center flex relative'>
                   <h1 className='relative text-white lg:text-6xl sm:text-5xl text-4xl lg:tracking-wider tracking-wider 
-                  md:tracking-wide  font-semibold'>Portfolio</h1>
-                  <h1 className='absolute text-white tracking-wide font-semibold text-[4rem] sm:text-[6rem] lg:text-[8rem] opacity-10 lg:-translate-y-3 sm:-translate-y-2.5 -translate-y-0.5'>PORTFOLIO</h1>
+                  md:tracking-wide  font-semibold duration-300'>Portfolio</h1>
+                  <h1 className='absolute text-white tracking-wide font-semibold text-[4rem] sm:text-[6rem] lg:text-[8rem] opacity-10 lg:-translate-y-3 sm:-translate-y-2.5 -translate-y-0.5 duration-300'>PORTFOLIO</h1>
                 </motion.div>
                 <motion.div variants={item} className='pt-2  items-center justify-center flex'>
-                    <h1 className='text-gray-400 tracking-wider'>My recent projects</h1>
+                    <h1 className='text-gray-400 tracking-wider '>My recent projects</h1>
                 </motion.div>
             </div>
 
             <motion.div 
             variants={item} 
-            className=" grid grid-cols-3 md:w-7/12 min-w-fit w-full items-self-center justify-self-center text-center h-full md:row-start-4 md:row-span-4 row-span-5 text-white gap-y-6">
+            className=" grid grid-cols-3 md:w-7/12 min-w-full w-full items-self-center justify-self-center text-center h-full md:row-start-3 md:row-span-4 row-span-5 text-white gap-y-6 ">
                 {completedWorks.slice(0, 3).map((works, index) => {
                  return (
-                  <a href={works.url} className='border col-span-3 rounded-2xl hover:scale-105 duration-500 w-full h-full grid grid-cols-5 items-center justify-center min-w-fit m-2'>
-                    <div className="justify-center items-center lg:flex hidden lg:col-span-1">{works.description}</div>
+                  <a href={works.url} className='border col-span-3 rounded-2xl hover:scale-105 duration-500 w-full h-full grid grid-cols-5 items-self-center justify-self-center min-w-fit max-w-6xl m-2'>
+                    <div className="justify-center items-center lg:flex hidden lg:col-span-1 ">{works.description}</div>
                     <div className="justify-center items-center sm:flex hidden sm:col-span-2 lg:col-span-1">{works.website}</div>        
                     <iframe
                     className="justify-center items-center col-span-5 sm:col-span-3 lg:col-span-3 sm:col-start-3 flex w-full h-full sm:rounded-r-2xl sm:rounded-l-none rounded-2xl"
+                    loading='lazy'
                     src={works.url}
                     scrolling="no"
                     ></iframe>      

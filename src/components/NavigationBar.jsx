@@ -145,7 +145,7 @@ function NavigationBar({AppRoutes, runScroll}) {
           {/* links */}
           <div className='col-span-2 col-start-1 flex items-center justify-center min-w-fit px-5'>
             <nav className=''>
-              <ul className='flex gap-6 justify-center items-center  text-white'>
+              <ul className='flex gap-6 justify-center items-center text-white'>
                 {footerMediaLinks.map((links, index) => {
                   return (
                     <>
