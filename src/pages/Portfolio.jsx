@@ -1,137 +1,55 @@
-import React, {useState} from 'react'
-import { motion } from "framer-motion";
-import SeeMoreModal from '../components/SeeMoreModal'
+import PropTypes from 'prop-types';
+import { FiGlobe, FiSmartphone, FiArrowUpRight } from 'react-icons/fi';
+import { FaApple } from 'react-icons/fa';
 
-function Portfolio()  {
+const projects = [
+  { name: 'Kur slėptis?', url: 'https://kursleptis.vercel.app/', domain: 'kursleptis.vercel.app', type: 'app', logo: '/projects/kursleptis.png', color: 'from-slate-300/20 to-sky-900/30' },
+  { name: 'Nord Barbershop', url: 'https://nordbarbershop.lt', domain: 'nordbarbershop.lt', type: 'website', mark: 'N', color: 'from-stone-500/30 to-stone-900/30' },
+  { name: 'Igmita', url: 'https://igmita.lt', domain: 'igmita.lt', type: 'website', mark: 'i', color: 'from-emerald-400/20 to-teal-900/30' },
+  { name: 'MarcoMatch', url: 'https://www.marcomatch.com/', domain: 'marcomatch.com', type: 'app', mark: 'M', color: 'from-sky-400/25 to-indigo-900/30', appStore: 'https://apps.apple.com/app/id6797470286' },
+  { name: 'KukuApp', url: 'https://kukuapp.vercel.app/', domain: 'kukuapp.vercel.app', type: 'app', mark: 'K', color: 'from-amber-300/25 to-orange-900/30', comingSoon: true },
+  { name: 'Vaikų pasakos', url: 'https://vaiku-pasakos-info.vercel.app/', domain: 'vaiku-pasakos-info.vercel.app', type: 'app', mark: 'V', color: 'from-violet-400/25 to-purple-900/30', comingSoon: true },
+];
 
+const copy = {
+  lt: { title: 'Mano projektai', intro: 'Interneto svetainės ir programėlės, kurias sukūriau.', website: 'Svetainė', app: 'Programėlė', visit: 'Atidaryti svetainę', soon: 'App Store — netrukus' },
+  en: { title: 'My projects', intro: 'Websites and apps I’ve built.', website: 'Website', app: 'App', visit: 'Visit website', soon: 'App Store — coming soon' },
+};
 
-  //useState function
-  const [isOpen, setIsOpen] = useState(false);
-
-  const completedWorks = [
-    {
-      website: 'Sumustinukai.lt',
-      description: "Landing page",
-      url: 'https://www.sumustinukai.lt',
-      background: './src/assets/sumustinukai.png'
-    },
-    {
-      website: 'Sumustinukai.lt',
-      description: "Landing page",
-      url: 'https://www.sumustinukai.lt'
-    }
-    ,{
-      website: 'Sumustinukai.lt',
-      description: "Landing page",
-      url: 'https://www.sumustinukai.lt'
-    }
-    ,{
-      website: 'Sumustinukai.lt',
-      description: "Landing page",
-      url: 'https://www.sumustinukai.lt'
-    },
-    {
-      website: 'Sumustinukai.lt',
-      description: "Landing page",
-      url: 'https://www.sumustinukai.lt'
-    }
-    
-  ]
-
-  const container = {
-    hidden: { opacity: 1 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2, // Delay between child animations
-      },
-    },
-  };
-
-  // Animation variants for each text line
-  const item = {
-    hidden: {
-      opacity: 0, // Start fully transparent
-      y: -20,     // Start slightly above
-      x: -20,     // Start slightly to the left
-    },
-    show: {
-      opacity: 1, // Fully visible
-      y: 0,       // Move to original position vertically
-      x: 0,       // Move to original position horizontally
-      transition: {
-        duration: 0.6, // Duration for each item
-        ease: "easeOut", // Smooth easing
-      },
-    },
-  };
-
+export default function Portfolio({ language }) {
+  const text = copy[language];
   return (
-    <>
-        <motion.div
-        variants={container}
-        initial="hidden" // Starting state for all items
-        animate="show"   // Final state for all items
-         className="h-full w-full px-6 items-center justify-center grid grid-cols-1 grid-rows-7">
-            <div className="items-center justify-center grid gap-2 h-full row-span-2">
-                <motion.div variants={item} className='items-center justify-center flex relative'>
-                  <h1 className='relative text-white lg:text-6xl sm:text-5xl text-4xl lg:tracking-wider tracking-wider 
-                  md:tracking-wide  font-semibold duration-300'>Portfolio</h1>
-                  <h1 className='absolute text-white tracking-wide font-semibold text-[4rem] sm:text-[6rem] lg:text-[8rem] opacity-10 lg:-translate-y-3 sm:-translate-y-2.5 -translate-y-0.5 duration-300'>PORTFOLIO</h1>
-                </motion.div>
-                <motion.div variants={item} className='pt-2  items-center justify-center flex'>
-                    <h1 className='text-gray-400 tracking-wider '>My recent projects</h1>
-                </motion.div>
-            </div>
-
-            <motion.div 
-            variants={item} 
-            className=" grid grid-cols-3 md:w-7/12 min-w-full w-full items-self-center justify-self-center text-center h-full md:row-start-3 md:row-span-4 row-span-5 text-white gap-y-6 ">
-                {completedWorks.slice(0, 3).map((works, index) => {
-                 return (
-                  <a href={works.url} className='border col-span-3 rounded-2xl hover:scale-105 duration-500 w-full h-full grid grid-cols-5 items-self-center justify-self-center min-w-fit max-w-6xl m-2'>
-                    <div className="justify-center items-center lg:flex hidden lg:col-span-1 ">{works.description}</div>
-                    <div className="justify-center items-center sm:flex hidden sm:col-span-2 lg:col-span-1">{works.website}</div>        
-                    <iframe
-                    className="justify-center items-center col-span-5 sm:col-span-3 lg:col-span-3 sm:col-start-3 flex w-full h-full sm:rounded-r-2xl sm:rounded-l-none rounded-2xl"
-                    loading='lazy'
-                    src={works.url}
-                    scrolling="no"
-                    ></iframe>      
-                  </a>
-                 )
-                })}
-                <motion.div variants={item} className="items-center justify-center grid gap-2  col-span-3">
-              <div className='items-center justify-center flex w-full'>
-                <button 
-
-                //onClick sets isOpen = true
-                 onClick={() => setIsOpen(true)}
-                className= ' wcursor-pointer border border-gray-400 rounded-full hover:scale-105 duration-500 hover:border-white hover:text-white p-3 text-gray-400'>
-                  See more
-                  <SeeMoreModal 
-                  //sends these props to SeeMoreModal
-                  // sends that open is true
-                  open={isOpen}
-
-                  //sends onClose function, and whether its used in the component, it will set isOpen to false
-                  onClose={() => setIsOpen(false)}
-
-                  //sends data
-                  completedWorks={completedWorks}
-                    >
-                  </SeeMoreModal>
-                </button>
+    <section className="w-full max-w-6xl self-start px-6 py-8 sm:px-10" aria-labelledby="projects-title">
+      <h1 id="projects-title" className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">{text.title}</h1>
+      <p className="mt-3 text-slate-300">{text.intro}</p>
+      <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
+        {projects.map(project => {
+          const TypeIcon = project.type === 'app' ? FiSmartphone : FiGlobe;
+          return (
+            <article key={project.url} className="flex flex-col overflow-hidden rounded-2xl border border-slate-500/40 bg-slate-900/30 transition-colors hover:border-sky-200/60">
+              <a href={project.url} target="_blank" rel="noopener noreferrer" aria-label={`${project.name} — ${text.visit}`} className={`group flex h-36 items-center justify-center bg-gradient-to-br ${project.color} focus-visible:outline focus-visible:outline-2 focus-visible:outline-sky-200`}>
+                {project.logo ? (
+                  <img src={project.logo} alt={`${project.name} logo`} width="96" height="96" loading="lazy" className="h-24 w-24 rounded-2xl object-contain transition-transform group-hover:scale-110" />
+                ) : (
+                  <span aria-hidden="true" className="text-6xl font-semibold tracking-tight text-white/80 transition-transform group-hover:scale-110">{project.mark}</span>
+                )}
+              </a>
+              <div className="flex flex-1 flex-col p-5">
+                <span className="flex items-center gap-2 text-xs font-medium text-sky-200"><TypeIcon aria-hidden="true" />{text[project.type]}</span>
+                <h2 className="mt-3 text-xl font-semibold text-white">{project.name}</h2>
+                <p className="mt-1 break-all text-sm text-slate-400">{project.domain}</p>
+                <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm">
+                  <a href={project.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-white underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-sky-200">{text.visit}<FiArrowUpRight aria-hidden="true" /></a>
+                  {project.appStore && <a href={project.appStore} target="_blank" rel="noopener noreferrer" aria-label={`${project.name} — App Store`} className="inline-flex items-center gap-2 text-sky-200 underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-sky-200"><FaApple aria-hidden="true" />App Store</a>}
+                  {project.comingSoon && <span className="inline-flex items-center gap-2 text-xs text-slate-400"><FaApple aria-hidden="true" />{text.soon}</span>}
                 </div>
-            </motion.div>
-            </motion.div>
-
-            
-
-
-        </motion.div>
-    </>
-  )
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+  );
 }
 
-export default Portfolio;
+Portfolio.propTypes = { language: PropTypes.oneOf(['lt', 'en']).isRequired };

@@ -1,20 +1,21 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
 import Portfolio from './pages/Portfolio';
-import About from './pages/About';
+
 import Contacts from './pages/Contacts';
 
 
 
-function AppRoutes() {
+function AppRoutes({ language }) {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/portfolio" element={<Portfolio />} />
-      <Route path="/about" element={<About />} /> 
+      <Route path="/" element={<Home language={language} />} />
+      <Route path="/portfolio" element={<Portfolio language={language} />} />
+      <Route path="/about" element={<Navigate to="/portfolio" replace />} />
       <Route path="/contacts" element={ <Contacts />} />
     </Routes>
   );
 }
+AppRoutes.propTypes = { language: PropTypes.oneOf(['lt', 'en']).isRequired };
 export default AppRoutes;

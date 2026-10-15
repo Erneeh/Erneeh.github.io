@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+import PropTypes from 'prop-types';
 
 import { FiInstagram, FiGithub, FiLinkedin, FiArrowUp, FiArrowDown } from "react-icons/fi";
 
 import { Link,useLocation, useNavigate } from 'react-router-dom';
 
 
-function NavigationBar({AppRoutes, runScroll}) {
+function NavigationBar({AppRoutes, language, setLanguage}) {
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -13,8 +14,7 @@ function NavigationBar({AppRoutes, runScroll}) {
   const pageMapping = {
     '/': 1,
     '/portfolio': 2,
-    '/about': 3,
-    '/contacts': 4,
+    '/contacts': 3,
   };
 
 
@@ -43,18 +43,6 @@ function NavigationBar({AppRoutes, runScroll}) {
     (acc, [path, index]) => ({ ...acc, [index]: path }),
     {}
   );
-
-  
-  const handleScroll = (e) => {
-    const direction = e.deltaY > 0 ? 1 : -1; // Scroll direction
-    let newIndex = currentIndex + direction;
-
-    // Ensure the index stays within bounds
-    if (newIndex >= 0 && newIndex <= totalPages) {
-      navigate(reversePageMapping[newIndex]); // Navigate to the new page
-    }
-  };
-
 
 
   const [isScrolled, setIsScrolled] = useState(false);
@@ -95,29 +83,26 @@ function NavigationBar({AppRoutes, runScroll}) {
 
   return (
     <>
-    <div 
-    className='grid grid-cols-10 grid-rows-10 h-screen w-full shadow-[inset_0_0_50px_rgba(0,0,0,0.5)] bg-gradient-to-r from-slate-900 to-slate-700'  onWheel={handleScroll}>
+    <div
+    className='grid grid-cols-10 grid-rows-10 h-[100dvh] w-full shadow-[inset_0_0_50px_rgba(0,0,0,0.5)] bg-gradient-to-r from-slate-900 to-slate-700'>
       {/* this is the top of nav */}
       <div className={`col-span-10 row-span-1 ${ isScrolled ? "hidden" : ""}`}>
-        <div className='h-full grid grid-cols-10 items-center justify-center px-5'>
-          {/* name */}
-          <div className='col-span-2 col-start-1 flex items-center justify-center min-w-fit px-5'>
-            <h1 className='text-white font-semibold tracking-widest'><Link to="/">ERNESTAS</Link></h1>
-          </div>
-          {/* button */}
-          <div className='col-span-2 col-start-9  flex items-center justify-center px-5 min-w-fit'>
-          {currentIndex !== 1 && (
-            <button 
-            onClick={handleNextPageReverseClick}
-            className='p-3 bg-gray-400 text-gray-300 rounded-full h-fit w-fit cursor-pointer hover:scale-110 duration-300'>
-            <FiArrowUp />
-            </button>
-          )}
+        <div className="flex h-full items-center justify-between gap-2 px-3 sm:px-10">
+          <Link to="/" className="text-xs font-semibold tracking-wide text-white sm:text-lg">Ernestas Undzėnas</Link>
+          <div className="flex items-center gap-3">
+            <div role="group" aria-label="Kalba / Language" className="flex rounded-full border border-slate-500 p-1 text-xs sm:text-sm">
+              {['lt', 'en'].map(code => (
+                <button key={code} type="button" lang={code} aria-pressed={language === code} onClick={() => setLanguage(code)} className={`rounded-full px-2 py-2 sm:px-3 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-sky-200 ${language === code ? 'bg-sky-200 text-slate-900' : 'text-slate-200 hover:bg-slate-600'}`}>
+                  {code === 'lt' ? 'Lietuvių' : 'English'}
+                </button>
+              ))}
+            </div>
+            {currentIndex !== 1 && <button aria-label={language === 'lt' ? 'Ankstesnis puslapis' : 'Previous page'} onClick={handleNextPageReverseClick} className="rounded-full bg-slate-600 p-3 text-white"><FiArrowUp /></button>}
           </div>
         </div>
       </div>
-      
-      
+
+
       {/* this is the left side of nav */}
         <div className='hidden md:grid md:row-span-8 justify-center items-center min-w-fit'>
           <div className='grid grid-rows-9 h-full justify-items-center items-center '>
@@ -156,29 +141,28 @@ function NavigationBar({AppRoutes, runScroll}) {
           <div className='col-span-2 col-start-1 flex items-center justify-center min-w-fit px-5'>
             <nav className=''>
               <ul className='flex gap-6 justify-center items-center text-white'>
-                {footerMediaLinks.map((links, index) => {
+                {footerMediaLinks.map((links) => {
                   return (
-                    <>
-                    <li 
+                    <li key={links.href}
                     className='cursor-pointer hover:scale-125 duration-300'>
                       <a href={links.href} target='_blank'>{links.icon}</a>
                     </li>
-                    </>
-                  ) 
+                  )
                 })}
                 </ul>
             </nav>
           </div>
           {/* button */}
           <div className='col-span-2 col-start-9  flex items-center justify-center px-5 min-w-fit'>
-            {currentIndex !== 4 && (
-              <button 
+            {currentIndex !== totalPages && (
+              <button
+              aria-label={language === 'lt' ? 'Kitas puslapis' : 'Next page'}
               onClick={handleNextPageClick}
               className='p-3 bg-gray-400 text-gray-300 rounded-full h-fit w-fit cursor-pointer hover:scale-110 duration-300'>
               <FiArrowDown />
               </button>
             )}
-            
+
           </div>
         </div>
       </div>
@@ -188,4 +172,5 @@ function NavigationBar({AppRoutes, runScroll}) {
   )
 }
 
+NavigationBar.propTypes = { AppRoutes: PropTypes.node.isRequired, language: PropTypes.oneOf(['lt', 'en']).isRequired, setLanguage: PropTypes.func.isRequired };
 export default NavigationBar;
