@@ -97,7 +97,6 @@ function NavigationBar({AppRoutes, language, setLanguage}) {
                 </button>
               ))}
             </div>
-            {currentIndex !== 1 && <button aria-label={language === 'lt' ? 'Ankstesnis puslapis' : 'Previous page'} onClick={handleNextPageReverseClick} className="rounded-full bg-slate-600 p-3 text-white"><FiArrowUp /></button>}
           </div>
         </div>
       </div>
@@ -153,7 +152,8 @@ function NavigationBar({AppRoutes, language, setLanguage}) {
             </nav>
           </div>
           {/* button */}
-          <div className='col-span-2 col-start-9  flex items-center justify-center px-5 min-w-fit'>
+          <div className='col-span-2 col-start-9 flex items-center justify-center gap-3 px-5 min-w-fit'>
+{currentIndex !== 1 && <button aria-label={language === 'lt' ? 'Ankstesnis puslapis' : 'Previous page'} onClick={handleNextPageReverseClick} className="rounded-full bg-slate-600 p-3 text-white transition hover:scale-110"><FiArrowUp /></button>}
             {currentIndex !== totalPages && (
               <button
               aria-label={language === 'lt' ? 'Kitas puslapis' : 'Next page'}
