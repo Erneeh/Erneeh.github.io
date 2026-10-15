@@ -9,7 +9,8 @@
     "deploy": "gh-pages -d dist",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "postbuild": "node scripts/build-pages.mjs"
   },
   "dependencies": {
     "@emotion/react": "^11.13.5",
