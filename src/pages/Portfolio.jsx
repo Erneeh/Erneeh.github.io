@@ -4,10 +4,10 @@ import { FaApple } from 'react-icons/fa';
 
 const projects = [
   { name: 'Kur slėptis?', url: 'https://kursleptis.vercel.app/', domain: 'kursleptis.vercel.app', type: 'app', logo: '/projects/kursleptis.png', color: 'from-slate-300/20 to-sky-900/30' },
-  { name: 'Nord Barbershop', url: 'https://nordbarbershop.lt', domain: 'nordbarbershop.lt', type: 'website', mark: 'N', color: 'from-stone-500/30 to-stone-900/30' },
-  { name: 'Igmita', url: 'https://igmita.lt', domain: 'igmita.lt', type: 'website', mark: 'i', color: 'from-emerald-400/20 to-teal-900/30' },
-  { name: 'MarcoMatch', url: 'https://www.marcomatch.com/', domain: 'marcomatch.com', type: 'app', mark: 'M', color: 'from-sky-400/25 to-indigo-900/30', appStore: 'https://apps.apple.com/app/id6797470286' },
-  { name: 'KukuApp', url: 'https://kukuapp.vercel.app/', domain: 'kukuapp.vercel.app', type: 'app', mark: 'K', color: 'from-amber-300/25 to-orange-900/30', comingSoon: true },
+  { name: 'Nord Barbershop', url: 'https://nordbarbershop.lt', domain: 'nordbarbershop.lt', type: 'website', logo: '/projects/nord.jpeg', cover: true, color: 'from-stone-500/30 to-stone-900/30' },
+  { name: 'Igmita', url: 'https://igmita.lt', domain: 'igmita.lt', type: 'website', logo: '/projects/igmita.png', color: 'from-emerald-400/20 to-teal-900/30' },
+  { name: 'MarcoMatch', url: 'https://www.marcomatch.com/', domain: 'marcomatch.com', type: 'app', logo: '/projects/marcomatch.png', color: 'from-sky-400/25 to-indigo-900/30', appStore: 'https://apps.apple.com/app/id6797470286' },
+  { name: 'KukuApp', url: 'https://kukuapp.vercel.app/', domain: 'kukuapp.vercel.app', type: 'app', logo: '/projects/kukuapp.png', color: 'from-amber-300/25 to-orange-900/30', comingSoon: true },
   { name: 'Vaikų pasakos', url: 'https://vaiku-pasakos-info.vercel.app/', domain: 'vaiku-pasakos-info.vercel.app', type: 'app', mark: 'V', color: 'from-violet-400/25 to-purple-900/30', comingSoon: true },
 ];
 
@@ -29,7 +29,7 @@ export default function Portfolio({ language }) {
             <article key={project.url} className="flex flex-col overflow-hidden rounded-2xl border border-slate-500/40 bg-slate-900/30 transition-colors hover:border-sky-200/60">
               <a href={project.url} target="_blank" rel="noopener noreferrer" aria-label={`${project.name} — ${text.visit}`} className={`group flex h-36 items-center justify-center bg-gradient-to-br ${project.color} focus-visible:outline focus-visible:outline-2 focus-visible:outline-sky-200`}>
                 {project.logo ? (
-                  <img src={project.logo} alt={`${project.name} logo`} width="96" height="96" loading="lazy" className="h-24 w-24 rounded-2xl object-contain transition-transform group-hover:scale-110" />
+                  <img src={project.logo} alt={`${project.name} logo`} width="96" height="96" loading="lazy" className={`${project.cover ? 'h-full w-full object-cover' : 'h-24 w-24 rounded-2xl object-contain'} transition-transform group-hover:scale-110`} />
                 ) : (
                   <span aria-hidden="true" className="text-6xl font-semibold tracking-tight text-white/80 transition-transform group-hover:scale-110">{project.mark}</span>
                 )}
