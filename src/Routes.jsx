@@ -13,7 +13,7 @@ function AppRoutes({ language }) {
       <Route path="/" element={<Home language={language} />} />
       <Route path="/portfolio" element={<Portfolio language={language} />} />
       <Route path="/about" element={<Navigate to="/portfolio" replace />} />
-      <Route path="/contacts" element={ <Contacts />} />
+      <Route path="/contacts" element={ <Contacts language={language} />} />
     </Routes>
   );
 }

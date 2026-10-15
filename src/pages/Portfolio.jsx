@@ -12,7 +12,7 @@ const projects = [
 ];
 
 const copy = {
-  lt: { title: 'Mano projektai', intro: 'Interneto svetainės ir programėlės, kurias sukūriau.', webapp: 'Web app', website: 'Svetainė', app: 'Programėlė', visit: 'Atidaryti', soon: 'App Store — netrukus' },
+  lt: { title: 'Mano projektai', intro: 'Interneto svetainės ir programėlės, kurias sukūriau.', webapp: 'Žiniatinklio aplikacija', website: 'Svetainė', app: 'Programėlė', visit: 'Atidaryti', soon: 'App Store — netrukus' },
   en: { title: 'My projects', intro: 'Websites and apps I’ve built.', webapp: 'Web app', website: 'Website', app: 'App', visit: 'Open', soon: 'App Store — coming soon' },
 };
 
