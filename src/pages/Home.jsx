@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 
 const copy = {
   lt: {
-    role: 'AI-assisted kūrėjas',
+    role: 'AI Developer',
     title: 'Svetainės. El. parduotuvės. Programėlės.',
     contact: 'Susisiekime',
     work: 'Projektai',
   },
   en: {
-    role: 'AI-assisted developer',
+    role: 'AI Developer',
     title: 'Websites. Online shops. Apps.',
     contact: 'Get in touch',
     work: 'Projects',
